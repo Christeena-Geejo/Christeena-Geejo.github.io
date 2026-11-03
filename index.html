@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f4">
+  <meta name="description" content="Portfolio of Christeena Geejo (Pinky), a Computer Science student building AI, full-stack and mobile systems.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Christeena Geejo — CS Student & Developer">
+  <meta property="og:description" content="AI, full-stack and mobile systems by Christeena Geejo.">
+  <meta property="og:url" content="YOUR_PORTFOLIO_URL">
+  <meta property="og:image" content="YOUR_OG_IMAGE_URL">
+  <title>Christeena Geejo — CS Student & Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f6f4; --surface: #ffffff; --surface-2: #edf0ed;
+      --text: #18211e; --muted: #65716b; --line: #dce2dd;
+      --accent: #087f68; --accent-soft: #dff2ec; --shadow: 0 18px 50px rgba(24,33,30,.07);
+      --mono: "DM Mono", monospace; --sans: "Manrope", sans-serif;
+    }
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #101714; --surface: #17211d; --surface-2: #202d27;
+      --text: #edf4ef; --muted: #a0aea6; --line: #2c3b33;
+      --accent: #64d6b7; --accent-soft: #1b3a31; --shadow: 0 18px 50px rgba(0,0,0,.22);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.65; transition: background .25s,color .25s; }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
+    button { font: inherit; }
+    .wrap { width: min(1160px, calc(100% - 72px)); margin: 0 auto; }
+    .mono, .eyebrow, .nav-label, .project-index { font-family: var(--mono); letter-spacing: .04em; }
+    .eyebrow { color: var(--accent); text-transform: uppercase; font-size: .76rem; font-weight: 500; }
+    header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-weight: 800; letter-spacing: -.06em; font-size: 1.1rem; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 22px; }
+    .nav-links a { color: var(--muted); font-size: .82rem; font-weight: 700; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .theme-toggle, .menu-toggle { border: 1px solid var(--line); background: var(--surface); color: var(--text); border-radius: 999px; width: 42px; height: 42px; cursor: pointer; display: grid; place-items: center; }
+    .menu-toggle { display: none; }
+    main section { padding: 76px 0; border-bottom: 1px solid var(--line); }
+    .hero { min-height: min(720px, calc(100vh - 72px)); display: grid; align-items: center; padding: 76px 0 84px; position: relative; overflow: hidden; }
+    .hero::after { content: ""; position: absolute; width: 460px; height: 460px; border: 1px solid var(--line); border-radius: 50%; right: -120px; top: 60px; box-shadow: 0 0 0 55px color-mix(in srgb,var(--accent) 4%,transparent), 0 0 0 110px color-mix(in srgb,var(--accent) 3%,transparent); pointer-events: none; }
+    .hero-content { position: relative; z-index: 1; max-width: 850px; }
+    .availability { display: inline-flex; align-items: center; gap: 9px; border: 1px solid var(--line); background: var(--surface); padding: 7px 12px; border-radius: 999px; color: var(--muted); font: .72rem var(--mono); margin-bottom: 28px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+    h1 { font-size: clamp(3.3rem, 9vw, 7.2rem); line-height: .98; letter-spacing: -.085em; margin: 0 0 24px; font-weight: 800; }
+    h1 .surname { color: var(--accent); }
+    .hero h2 { font-size: clamp(1.2rem, 2.3vw, 1.8rem); line-height: 1.35; letter-spacing: -.045em; margin: 0 0 16px; font-weight: 600; }
+    .hero-copy { max-width: 620px; color: var(--muted); font-size: 1.02rem; margin: 0 0 32px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 11px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid var(--line); border-radius: 7px; padding: 12px 17px; font-size: .84rem; font-weight: 800; background: var(--surface); transition: transform .2s,border-color .2s,background .2s; }
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .btn.primary { color: #fff; background: #087f68; border-color: #087f68; }
+    [data-theme="dark"] .btn.primary { background: #247d68; border-color: #247d68; color: #fff; }
+    .section-head { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 12px; margin-bottom: 30px; max-width: 760px; }
+    h2.section-title { font-size: clamp(2rem, 5vw, 3.25rem); letter-spacing: -.07em; line-height: 1.05; margin: 9px 0 0; }
+    .section-note { color: var(--muted); max-width: 560px; width: 100%; flex: none; font-size: .88rem; line-height: 1.65; margin: 0; }
+    .about-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(340px, .92fr); gap: clamp(32px, 4vw, 58px); align-items: center; }
+    .about-copy { font-size: 1rem; line-height: 1.78; color: var(--muted); max-width: 690px; margin: 0; }
+    .about-copy strong { color: var(--text); font-weight: 700; }
+    .fact-panel { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 20px 24px; }
+    .fact { padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .fact:last-child { border: 0; padding-bottom: 0; }
+    .fact:first-child { padding-top: 0; }
+    .fact small { display: block; color: var(--muted); font: .66rem var(--mono); text-transform: uppercase; margin-bottom: 3px; }
+    .fact strong { font-size: .86rem; line-height: 1.4; }
+    .timeline { border-top: 1px solid var(--line); }
+    .timeline-item { display: grid; grid-template-columns: 220px 1fr; gap: 36px; padding: 27px 0; border-bottom: 1px solid var(--line); }
+    .timeline-date { color: var(--muted); font: .75rem var(--mono); padding-top: 5px; }
+    .timeline-item h3 { margin: 0 0 5px; font-size: 1.08rem; letter-spacing: -.03em; }
+    .timeline-item p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .org { color: var(--accent); font-weight: 700; font-size: .84rem; }
+    .featured { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: clamp(22px, 4vw, 42px); box-shadow: var(--shadow); }
+    .featured-top { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-bottom: 20px; }
+    .status { color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 5px 9px; font: .68rem var(--mono); white-space: nowrap; }
+    .featured h3 { font-size: clamp(1.7rem, 4vw, 2.65rem); letter-spacing: -.065em; line-height: 1.12; margin: 0 0 17px; max-width: 780px; }
+    .featured-desc { color: var(--muted); max-width: 830px; margin: 0; }
+    .pipeline { display: grid; grid-template-columns: repeat(5,1fr); gap: 9px; margin: 36px 0 28px; }
+    .pipe-step { background: var(--surface-2); border: 1px solid var(--line); border-radius: 7px; padding: 17px 12px; min-height: 92px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+    .pipe-step:not(:last-child)::after { content: "→"; position: absolute; right: -13px; top: 50%; transform: translate(50%,-50%); z-index: 2; color: var(--accent); font-weight: 800; background: var(--surface); border-radius: 50%; width: 20px; text-align: center; }
+    .pipe-step small { color: var(--accent); font: .65rem var(--mono); }
+    .pipe-step strong { font-size: .82rem; line-height: 1.3; margin-top: 5px; }
+    .featured-foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--muted); font: .72rem var(--mono); }
+    .project-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+    .project-card { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 25px; display: flex; flex-direction: column; min-height: 330px; transition: transform .25s,border-color .25s,box-shadow .25s; }
+    .project-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--shadow); }
+    .project-card.wide { grid-column: 1 / -1; min-height: 0; }
+    .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .project-index { color: var(--accent); font-size: .72rem; }
+    .project-card h3 { font-size: 1.35rem; line-height: 1.25; letter-spacing: -.045em; margin: 0 0 9px; }
+    .project-card p { color: var(--muted); font-size: .88rem; margin: 0 0 15px; }
+    .project-card ul { color: var(--muted); padding-left: 18px; margin: 0 0 20px; font-size: .83rem; }
+    .project-card li { margin: 5px 0; }
+    .chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 14px; }
+    .chip { background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); border-radius: 4px; padding: 5px 8px; font: .67rem var(--mono); }
+    .card-link { display: inline-flex; color: var(--accent); font-size: .8rem; font-weight: 800; margin-top: 17px; }
+    .initiative { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding: 30px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+    .initiative h3 { margin: 0 0 8px; font-size: 1.4rem; letter-spacing: -.04em; }
+    .initiative p { color: var(--muted); max-width: 730px; margin: 0; font-size: .9rem; }
+    .leetcode { display: flex; align-items: center; justify-content: space-between; gap: 25px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 30px; }
+    .leetcode h3 { margin: 0 0 5px; font-size: 1.4rem; letter-spacing: -.04em; }
+    .leetcode p { color: var(--muted); margin: 0; font-size: .86rem; }
+    .skill-groups { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+    .skill-group { background: var(--surface); border: 1px solid var(--line); border-radius: 9px; padding: 22px; }
+    .skill-group h3 { font: .75rem var(--mono); text-transform: uppercase; color: var(--accent); margin: 0 0 15px; }
+    .cert-list { border-top: 1px solid var(--line); }
+    .cert { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 21px 0; border-bottom: 1px solid var(--line); }
+    .cert strong { font-size: .94rem; }
+    .cert span { color: var(--muted); font: .7rem var(--mono); white-space: nowrap; }
+    .contact-panel { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: clamp(24px, 5vw, 50px); }
+    .contact-panel h3 { font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.05; letter-spacing: -.07em; margin: 8px 0 15px; }
+    .contact-panel p { color: var(--muted); margin: 0; }
+    .contact-links { display: grid; align-content: center; }
+    .contact-links a { display: flex; justify-content: space-between; gap: 15px; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: .85rem; font-weight: 700; }
+    .contact-links a span:last-child { color: var(--accent); }
+    footer { padding: 25px 0; color: var(--muted); font: .7rem var(--mono); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 15px; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease,transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
+    @media (min-width: 761px) and (max-width: 1100px) {
+      .wrap { width: calc(100% - 64px); }
+      main section { padding: 68px 0; }
+      .hero { min-height: 640px; padding: 70px 0; }
+      h1 { font-size: clamp(4rem, 8vw, 6rem); }
+      .about-grid { grid-template-columns: minmax(0, 1fr) minmax(290px, .9fr); gap: 28px; }
+      .about-copy { font-size: .94rem; line-height: 1.7; }
+      .fact-panel { padding: 18px 20px; }
+      .section-title { font-size: clamp(2rem, 4vw, 2.7rem); }
+      .section-note { max-width: 520px; font-size: .82rem; }
+      .project-card { padding: 21px; }
+      .contact-panel { gap: 30px; }
+    }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 32px, 600px); }
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; padding: 18px 22px 22px; background: var(--bg); border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 15px; }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: grid; margin-left: auto; }
+      .nav-actions { display: flex; gap: 8px; }
+      main section { padding: 62px 0; }
+      .hero { min-height: 680px; padding: 75px 0; }
+      .hero::after { width: 280px; height: 280px; right: -150px; top: 70px; }
+      .section-head { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-bottom: 26px; }
+      .section-note { margin-top: 0; }
+      .about-grid,.contact-panel { grid-template-columns: 1fr; gap: 28px; }
+      .timeline-item { grid-template-columns: 1fr; gap: 7px; }
+      .pipeline { grid-template-columns: 1fr; gap: 8px; }
+      .pipe-step { min-height: 65px; flex-direction: row; align-items: center; justify-content: flex-start; gap: 13px; }
+      .pipe-step strong { margin: 0; }
+      .pipe-step:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -17px; transform: translate(50%,50%); }
+      .project-grid,.skill-groups { grid-template-columns: 1fr; }
+      .project-card.wide { grid-column: auto; }
+      .initiative { grid-template-columns: 1fr; }
+      .leetcode { align-items: flex-start; flex-direction: column; }
+      .cert { align-items: flex-start; flex-direction: column; gap: 5px; }
+      footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <!-- =========================================================
+       EDITABLE CONTENT: update links, placeholders and copy here.
+       Email and LinkedIn are configured below; update these values here if needed.
+       ========================================================= -->
+  <script>
+    const SITE = {
+      name: "Christeena Geejo",
+      nickname: "Pinky",
+      email: "christeenageejo@gmail.com",
+      linkedin: "https://www.linkedin.com/in/christeena-geejo/",
+      github: "https://github.com/Christeena-Geejo",
+      leetcode: "https://leetcode.com/u/_chxxsty_/",
+      leetcodeSolved: "YOUR_SOLVED_COUNT",
+      leetcodeRating: "YOUR_RATING",
+      projects: [
+        {
+          number: "01", title: "Anomaly Detection using Machine Learning",
+          summary: "A machine learning project focused on identifying anomalies within a dataset.",
+          bullets: ["Prepared and preprocessed data for model development.", "Trained and evaluated a machine learning model.", "Visualized and analyzed the results."],
+          tech: ["Python", "HTML", "CSS"], link: "https://github.com/Christeena-Geejo/Momentum", linkLabel: "View on GitHub"
+        },
+        {
+          number: "02", title: "NutriLifeGuard — Health Tracking App",
+          summary: "A mobile application designed to support everyday health and nutrition tracking.",
+          bullets: ["Diet tracking, calorie calculation and health monitoring.", "Exercise tracking, nutrition analysis and personalized health reports.", "Collaborated on feature integration and workflow improvements."],
+          tech: ["Flutter", "Dart"], link: "https://github.com/Christeena-Geejo/Health_App", linkLabel: "View on GitHub"
+        },
+        {
+          number: "03", title: "BookMyMovie — Full-Stack Ticket Booking System",
+          summary: "A secure movie ticket booking application designed to handle concurrent seat reservations.",
+          bullets: ["Implemented concurrent seat locking using Django transactions and Celery.", "Generated PDF tickets with QR-code validation.", "Combined a React frontend with a containerized backend stack."],
+          tech: ["Python", "React", "Django", "Docker", "Redis"], link: "https://github.com/Christeena-Geejo/BookMyMovie", linkLabel: "View on GitHub"
+        }
+      ],
+      skills: {
+        "Languages": ["Python", "Java", "JavaScript (ES6+)", "C", "Dart", "SQL"],
+        "Frontend": ["HTML", "CSS", "JavaScript (ES6+)", "React.js"],
+        "Backend": ["Django", "Django REST Framework (DRF)", "Celery"],
+        "Databases": ["PostgreSQL", "MongoDB", "Redis"],
+        "Tools & Platforms": ["Git", "GitHub", "Docker", "Firebase", "Supabase", "VS Code"],
+        "Libraries": ["NumPy", "Pandas", "scikit-learn"],
+        "AI / Computer Vision": ["YOLO", "ByteTrack", "DeepSORT", "ML preprocessing", "Model evaluation"],
+        "Mobile & Embedded": ["Flutter", "Arduino"],
+        "Core Subjects": ["Data Structures & Algorithms", "SQL & Database Management", "Computer Networks", "Operating Systems"]
+      },
+      certifications: [
+        "Programming, Data Structures and Algorithms using Python",
+        "Principles of Digital Communication",
+        "Fundamentals of MIMO Wireless Communication"
+      ]
+    };
+  </script>
+
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="Christeena Geejo home">cg<span>.</span></a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a>
+        <a href="#skills">Skills</a><a href="#certifications">Certifications</a><a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Toggle theme">◐</button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-content">
+        <div class="availability"><span class="dot"></span> COMPUTER SCIENCE · CLASS OF 2027</div>
+        <h1>Christeena<br><span class="surname">Geejo.</span></h1>
+        <h2>CS student building AI, full-stack and mobile systems.</h2>
+        <p class="hero-copy">Computer Science undergraduate with a passion for building practical software solutions and solving real-world problems. I enjoy learning new technologies, collaborating with others, and applying software engineering principles to develop reliable and user-friendly applications.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">View Projects <span aria-hidden="true">↘</span></a>
+          <a class="btn" id="heroGithub" href="#" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a class="btn" id="heroLeetCode" href="#" target="_blank" rel="noopener noreferrer">LeetCode ↗</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head reveal"><div><p class="eyebrow">01 / A little about me</p><h2 class="section-title">Curious by nature.<br>Builder by practice.</h2></div><p class="section-note">I enjoy working where software, data and real-world problems meet.</p></div>
+        <div class="about-grid reveal">
+          <p class="about-copy">Computer Science undergraduate with a passion for building practical software solutions and solving real-world problems. I enjoy learning new technologies, collaborating with others, and applying software engineering principles to develop reliable and user-friendly applications. My interests include computer vision, applied machine learning, full-stack engineering and mobile development.</p>
+          <div class="fact-panel">
+            <div class="fact"><small>Education</small><strong>B.Tech — Computer Science &amp; Engineering</strong></div>
+            <div class="fact"><small>Institution</small><strong>Government Engineering College, Thrissur</strong></div>
+            <div class="fact"><small>Timeline</small><strong>2023 — 2027</strong></div>
+            <div class="fact"><small>Minor</small><strong>Electronics &amp; Communication</strong></div>
+            <div class="fact"><small>Based in</small><strong>Kerala, India</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head reveal"><div><p class="eyebrow">02 / Experience</p><h2 class="section-title">Learning through<br>real-world work.</h2></div><p class="section-note">Internships, product development and student leadership.</p></div>
+        <div class="timeline reveal">
+          <article class="timeline-item"><div class="timeline-date">INTERNSHIP</div><div><h3>Python Developer Intern</h3><div class="org">Webandcrafts</div></div></article>
+          <article class="timeline-item"><div class="timeline-date">INTERNSHIP</div><div><h3>App Development Intern</h3><div class="org">Nutrified App</div><p>Contributing to the development of a mobile application.</p></div></article>
+          <article class="timeline-item"><div class="timeline-date">MAY 2025 — MAR 2026</div><div><h3>Technical Lead</h3><div class="org">ISTE — CSE Department</div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="featured">
+      <div class="wrap">
+        <div class="section-head reveal"><div><p class="eyebrow">03 / Main project</p><h2 class="section-title">Featured work</h2></div><p class="section-note">An in-progress B.Tech project bringing computer vision into practical surveillance.</p></div>
+        <article class="featured reveal">
+          <div class="featured-top"><span class="eyebrow">B.Tech Main Project</span><span class="status">IN PROGRESS</span></div>
+          <h3>Intelligent CCTV Surveillance Using Human Activity Recognition</h3>
+          <p class="featured-desc">I’m developing an AI-powered surveillance system that combines YOLO-based object detection, ByteTrack / DeepSORT multi-object tracking and human activity recognition. It aims to identify activities such as walking, running, loitering and possible falls in real-time video, flag suspicious activity and generate alerts — reducing dependence on continuous manual monitoring.</p>
+          <div class="pipeline" role="img" aria-label="System pipeline: Video Stream flows to YOLO Detection, then Tracking, Activity Recognition and Alerts.">
+            <div class="pipe-step"><small>01 / INPUT</small><strong>Video Stream</strong></div>
+            <div class="pipe-step"><small>02 / DETECT</small><strong>YOLO Detection</strong></div>
+            <div class="pipe-step"><small>03 / TRACK</small><strong>Object Tracking</strong></div>
+            <div class="pipe-step"><small>04 / ANALYZE</small><strong>Activity Recognition</strong></div>
+            <div class="pipe-step"><small>05 / OUTPUT</small><strong>Alerts</strong></div>
+          </div>
+          <div class="featured-foot"><span>COMPUTER VISION · MULTI-OBJECT TRACKING · ACTIVITY RECOGNITION</span><span>DEVELOPMENT UNDERWAY ↗</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head reveal"><div><p class="eyebrow">04 / Selected projects</p><h2 class="section-title">Things I've built.</h2></div><p class="section-note">A mix of machine learning, mobile experiences and full-stack systems.</p></div>
+        <div class="project-grid" id="projectGrid"></div>
+      </div>
+    </section>
+
+    <section id="community">
+      <div class="wrap">
+        <div class="section-head reveal"><div><p class="eyebrow">05 / Community initiatives</p><h2 class="section-title">Technology with<br>local impact.</h2></div></div>
+        <article class="initiative reveal">
+          <div><p class="eyebrow">K-DISC · Block Innovation Project</p><h3>Scarecrow — Sound-Based Bird Deterrent System</h3><p>A sound-based bird deterrent concept for protecting Pokkali paddy crops. The proposed prototype uses an Arduino-based control unit to play distress calls at randomized intervals, aiming to reduce bird habituation. The project follows field visits and farmer interactions in the Vypin Block Panchayath area.</p><div class="chips"><span class="chip">Arduino</span><span class="chip">C</span><span class="chip">DFPlayer Mini</span><span class="chip">Sound Deterrence</span></div><a class="card-link" href="Scarecrow.pdf" target="_blank" rel="noopener noreferrer">View Pokkali project details (PDF) ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="coding">
+      <div class="wrap">
+        <div class="section-head reveal"><div><p class="eyebrow">06 / Problem solving</p><h2 class="section-title">Coding profile.</h2></div><p class="section-note">Practising problem-solving and strengthening algorithmic thinking.</p></div>
+        <div class="leetcode reveal">
+          <div><p class="eyebrow">LEETCODE</p><h3>Consistent practice. Better problem solving.</h3><p>Explore my coding profile and problem-solving practice.</p><a class="card-link" id="leetcodeProfile" href="#" target="_blank" rel="noopener noreferrer">Visit LeetCode profile ↗</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head reveal"><div><p class="eyebrow">07 / Toolkit</p><h2 class="section-title">Skills &amp; tools.</h2></div><p class="section-note">Technologies I use and continue to develop through projects and practice.</p></div>
+        <div class="skill-groups reveal" id="skillGroups"></div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="wrap">
+        <div class="section-head reveal"><div><p class="eyebrow">08 / Coursework</p><h2 class="section-title">Certifications.</h2></div><p class="section-note">NPTEL courses offered by the Indian Institutes of Technology.</p></div>
+        <div class="cert-list reveal" id="certList"></div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-panel reveal">
+          <div><p class="eyebrow">09 / Get in touch</p><h3>Have an idea?<br>Let's connect.</h3><p>I’m open to conversations about technology, projects and opportunities to learn and build. Feel free to reach out.</p><div style="margin-top:24px"><a class="btn primary" id="emailButton" href="mailto:christeenageejo@gmail.com">Send me an email ↗</a></div></div>
+          <div class="contact-links">
+            <a id="contactGithub" href="#" target="_blank" rel="noopener noreferrer"><span>GitHub</span><span>↗</span></a>
+            <a id="contactLeetCode" href="#" target="_blank" rel="noopener noreferrer"><span>LeetCode</span><span>↗</span></a>
+            <a id="contactLinkedIn" href="#" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><span>↗</span></a>
+            <a id="contactEmail" href="mailto:christeenageejo@gmail.com"><span>Email</span><span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap"><span>© <span id="year"></span> Christeena Geejo · Pinky</span><span>DESIGNED &amp; BUILT WITH HTML, CSS AND VANILLA JS</span></div></footer>
+
+  <script>
+    // Render editable data from the SITE object above.
+    const $ = (id) => document.getElementById(id);
+    $("heroGithub").href = SITE.github;
+    $("heroLeetCode").href = SITE.leetcode;
+    $("leetcodeProfile").href = SITE.leetcode;
+    $("year").textContent = new Date().getFullYear();
+
+    const emailHref = "mailto:" + SITE.email;
+    $("emailButton").href = emailHref;
+    $("contactEmail").href = emailHref;
+    $("contactEmail").lastElementChild.textContent = "↗";
+    $("contactGithub").href = SITE.github;
+    $("contactLeetCode").href = SITE.leetcode;
+    $("contactLinkedIn").href = SITE.linkedin;
+
+    $("projectGrid").innerHTML = SITE.projects.map((project) => `
+      <article class="project-card reveal">
+        <div class="card-top"><span class="project-index">${project.number} / PROJECT</span><span aria-hidden="true">↗</span></div>
+        <h3>${project.title}</h3><p>${project.summary}</p>
+        <ul>${project.bullets.map((item) => `<li>${item}</li>`).join("")}</ul>
+        <div class="chips">${project.tech.map((tech) => `<span class="chip">${tech}</span>`).join("")}</div>
+        ${project.link ? `<a class="card-link" href="${project.link}" target="_blank" rel="noopener noreferrer">${project.linkLabel} ↗</a>` : ""}
+      </article>`).join("");
+
+    $("skillGroups").innerHTML = Object.entries(SITE.skills).map(([group, items]) => `
+      <article class="skill-group"><h3>${group}</h3><div class="chips">${items.map((item) => `<span class="chip">${item}</span>`).join("")}</div></article>`).join("");
+
+    $("certList").innerHTML = SITE.certifications.map((cert, index) => `
+      <div class="cert"><strong><span class="project-index">${String(index + 1).padStart(2, "0")}.</span> ${cert}</strong><span>NPTEL · IIT</span></div>`).join("");
+
+    // Theme preference is kept locally in the browser.
+    const themeToggle = $("themeToggle");
+    const savedTheme = localStorage.getItem("pinky-portfolio-theme");
+    if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+    function updateThemeButton() {
+      const dark = document.documentElement.dataset.theme === "dark";
+      themeToggle.textContent = dark ? "☀" : "◐";
+      themeToggle.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+    }
+    updateThemeButton();
+    themeToggle.addEventListener("click", () => {
+      const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem("pinky-portfolio-theme", next);
+      updateThemeButton();
+    });
+
+    // Mobile navigation.
+    const menuToggle = $("menuToggle"), navLinks = $("navLinks");
+    menuToggle.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+      menuToggle.textContent = open ? "×" : "☰";
+    });
+    navLinks.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation menu");
+      menuToggle.textContent = "☰";
+    }));
+
+    // Subtle reveal animation; content remains visible if reduced motion is preferred.
+    const revealItems = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach((item) => observer.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add("visible"));
+    }
+  </script>
+</body>
+</html>
